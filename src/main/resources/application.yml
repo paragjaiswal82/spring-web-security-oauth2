@@ -1,0 +1,25 @@
+server:
+  port: 8083
+
+spring:
+  thymeleaf:
+    cache: false
+      security:
+    oauth2:
+      client:
+        registration:
+           mykeycloak:
+            client-id: test-client-id-from-keycloak
+            client-secret: d76f5b4b-a3ba-485e-8da1-f5d7fd2770ae
+            #client-name: KeyCloak
+            scope: profile
+            provider: keycloak
+            redirect-uri: http://localhost:8083/login/oauth2/code/mykeycloak
+            authorization-grant-type: authorization_code
+        provider:
+          keycloak:
+            token-uri: http://localhost:8080/auth/realms/appsdevelopers/protocol/openid-connect/token
+            authorization-uri: http://localhost:8080/auth/realms/appsdevelopers/protocol/openid-connect/auth
+            user-info-uri: http://localhost:8080/auth/realms/appsdevelopers/protocol/openid-connect/userinfo
+            jwk-set-uri: http://localhost:8080/auth/realms/appsdevelopers/protocol/openid-connect/certs
+            user-name-attribute: preferred_username
